@@ -1,0 +1,49 @@
+{{#if post.isNew}}
+  <form action="/posts" method="POST" enctype="multipart/form-data">
+{{else}}
+  <form action="/posts/{{post.id}}/edit" method="POST" enctype="multipart/form-data">
+{{/if}}
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input name="title" type="text" class="form-control {{#if error.title }}is-invalid{{/if}}" id="title"
+      placeholder="Enter title" value="{{ post.title }}">
+
+    {{#if error.title}}
+    <div class="invalid-feedback">
+      {{error.title.message}}
+    </div>
+    {{/if}}
+  </div>
+
+  <div class="form-group">
+    <label for="image">Image</label>
+    <input name="image" type="file" class="form-control {{#if error.image }}is-invalid{{/if}}" id="image"
+      placeholder="Enter image" value="{{ post.image }}">
+
+    {{#if error.image}}
+    <div class="invalid-feedback">
+      {{error.image.message}}
+    </div>
+    {{/if}}
+  </div>
+
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea name="description" type="text" class="form-control {{#if error.description }}is-invalid{{/if}}"
+      id="description" placeholder="Enter description" rows="10">{{ post.description }}</textarea>
+
+    {{#if error.description}}
+    <div class="invalid-feedback">
+      {{error.description.message}}
+    </div>
+    {{/if}}
+  </div>
+
+  <button type="submit" class="btn btn-primary">
+    {{#if post.isNew}}
+      New Post
+    {{else}}
+      Update Post
+    {{/if}}
+  </button>
+</form>

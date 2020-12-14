@@ -1,0 +1,26 @@
+<section>
+  <h1>Posts list</h1>
+
+  <a class="btn btn-primary" href="/posts/new"><i class="fa fa-plus mr-2"></i>New post</a>
+
+  <hr/>
+
+  {{#each posts as |post|}}
+    <div class="card">
+      <img class="card-img-top" src="..." alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">
+          <a href="/posts/{{post.id}}">{{post.title}}</a>
+        </h5>
+
+        <p class="card-text">{{post.description}}</p>
+
+        <p class="card-text">Author: {{post.author.email}}</small>
+
+        <form action="/posts/{{post.id}}/delete" method="POST">
+          <button type="submit" class="btn btn-danger"><i class="fa fa-trash mr-2"></i>Delete</button>
+        </form>
+      </div>
+    </div>
+  {{/each}}
+</section>
